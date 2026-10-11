@@ -21,6 +21,7 @@ export const initCornerstone = () => {
   cornerstoneWADOImageLoader.webWorkerManager.initialize({
     maxWebWorkers: navigator.hardwareConcurrency || 1,
     startWebWorkersOnDemand: true,
+    webWorkerTaskPaths: [],
     taskConfiguration: {
       decodeTask: {
         initializeCodecsOnStartup: false,
@@ -49,15 +50,12 @@ export interface DicomVolumeData {
   spacing: [number, number, number]; // x, y, z
 }
 
-// A simple utility to extract a basic 3D volume from a sorted array of 2D cornerstone images.
-// Note: This is a simplistic approach for demo purposes.
 export const buildVolumeFromImages = async (imageIds: string[]): Promise<DicomVolumeData | null> => {
     if (imageIds.length === 0) return null;
 
     try {
         const images = await Promise.all(imageIds.map(id => cornerstone.loadAndCacheImage(id)));
 
-        // Sort images by slice location if available
         images.sort((a: any, b: any) => {
             const zA = a.data?.floatString('x00201041') || a.imageId;
             const zB = b.data?.floatString('x00201041') || b.imageId;
@@ -70,11 +68,9 @@ export const buildVolumeFromImages = async (imageIds: string[]): Promise<DicomVo
 
         const rowPixelSpacing = images[0].rowPixelSpacing || 1;
         const columnPixelSpacing = images[0].columnPixelSpacing || 1;
-        // Approximation for slice thickness if not explicitly provided
         const sliceThickness = images[0].data?.floatString('x00180050') ? parseFloat(images[0].data.floatString('x00180050')!) : 1;
 
         const volumeSize = width * height * depth;
-        // Cornerstone image pixel data is generally Int16Array or Uint16Array
         const firstPixelData = images[0].getPixelData();
 
         let volumeData;
