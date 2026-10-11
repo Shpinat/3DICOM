@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@cornerstonejs/core": "^1.76.0",
     "@tailwindcss/vite": "^4.3.3",
     "@types/hammerjs": "^2.0.46",
     "@types/three": "^0.186.0",

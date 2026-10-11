@@ -4,7 +4,7 @@ import { VitePWA } from 'vite-plugin-pwa';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  base: '/dicom-viewer/', // For GitHub Pages deployment
+  base: '/3DICOM/', // For GitHub Pages deployment
   plugins: [
     tailwindcss(),
     react(),
@@ -21,7 +21,7 @@ export default defineConfig({
         theme_color: '#ffffff',
         background_color: '#ffffff',
         display: 'standalone',
-        start_url: '/dicom-viewer/',
+        start_url: '/3DICOM/',
         icons: [
           {
             src: 'icons/icon-192x192.png',
