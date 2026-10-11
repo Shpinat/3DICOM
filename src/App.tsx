@@ -6,7 +6,7 @@ import ThreeDPage from './pages/ThreeDPage';
 
 const App: React.FC = () => {
   return (
-    <Router basename="/dicom-viewer">
+    <Router basename="/3DICOM">
       <div className="flex flex-col h-screen w-screen bg-gray-900 text-white">
         <header className="bg-gray-800 p-4 shadow-md flex gap-4 items-center">
           <h1 className="text-xl font-bold">DICOM Просмотрщик</h1>
