@@ -1,1 +1,1 @@
-if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/dicom-viewer/sw.js', { scope: '/dicom-viewer/' })})}
+if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/3DICOM/sw.js', { scope: '/3DICOM/' })})}
